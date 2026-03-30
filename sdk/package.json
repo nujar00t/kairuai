@@ -4,9 +4,23 @@
   "description": "KairuAI SDK — TypeScript client for KairuAI agents",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nujar00t/kairuai.git",
+    "directory": "sdk"
+  },
+  "homepage": "https://github.com/nujar00t/kairuai#readme",
+  "bugs": "https://github.com/nujar00t/kairuai/issues",
+  "keywords": ["kairuai", "solana", "trading", "ai", "polymarket", "defi", "crypto"],
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
