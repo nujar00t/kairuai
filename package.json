@@ -1,0 +1,18 @@
+{
+  "name": "kairuai",
+  "version": "1.0.0",
+  "description": "KairuAI — Autonomous AI Trading Agent. Predict, analyze, and trade on Solana.",
+  "private": true,
+  "workspaces": [
+    "agents/trading",
+    "agents/polymarket",
+    "sdk"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "trading": "npm run start --workspace=agents/trading",
+    "polymarket": "npm run start --workspace=agents/polymarket"
+  },
+  "keywords": ["ai", "solana", "trading", "agent", "polymarket", "crypto"],
+  "license": "MIT"
+}

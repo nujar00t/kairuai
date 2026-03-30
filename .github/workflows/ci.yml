@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  python-check:
+    name: Python Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Syntax check
+        run: |
+          python -m py_compile kairu.py
+          python -m py_compile agents/prediction_agent.py
+          python -m py_compile agents/signal_agent.py
+          echo "Python syntax OK"
+
+  typescript-check:
+    name: TypeScript Build Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+      - name: Install dependencies
+        run: npm install
+      - name: Build TypeScript agents
+        run: |
+          cd agents/trading && npm install && npx tsc --noEmit
+          cd ../../agents/polymarket && npm install && npx tsc --noEmit
+          cd ../../sdk && npm install && npx tsc --noEmit
+          echo "TypeScript build OK"
+
+  verify-files:
+    name: Verify Required Files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required files
+        run: |
+          test -f README.md       && echo "README.md OK"
+          test -f LICENSE         && echo "LICENSE OK"
+          test -f CONTRIBUTING.md && echo "CONTRIBUTING.md OK"
+          test -f SECURITY.md     && echo "SECURITY.md OK"
+          test -f .env.example    && echo ".env.example OK"
+          test -f requirements.txt && echo "requirements.txt OK"
+          test -f package.json    && echo "package.json OK"
