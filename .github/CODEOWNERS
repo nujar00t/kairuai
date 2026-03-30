@@ -1,0 +1,20 @@
+# KairuAI Code Owners
+# These users are automatically requested for review on PRs.
+
+# Global ownership
+* @nujar00t
+
+# Python agents
+agents/*.py @nujar00t
+kairu.py @nujar00t
+
+# TypeScript agents and SDK
+agents/trading/ @nujar00t
+agents/polymarket/ @nujar00t
+sdk/ @nujar00t
+
+# CI and infrastructure
+.github/ @nujar00t
+Makefile @nujar00t
+requirements.txt @nujar00t
+package.json @nujar00t
