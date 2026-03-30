@@ -8,7 +8,7 @@ on:
 
 jobs:
   python-check:
-    name: Python Syntax Check
+    name: Python Tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,6 +23,8 @@ jobs:
           python -m py_compile agents/prediction_agent.py
           python -m py_compile agents/signal_agent.py
           echo "Python syntax OK"
+      - name: Run unit tests
+        run: pytest tests/ -v --tb=short
 
   typescript-check:
     name: TypeScript Build Check
