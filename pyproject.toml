@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "kairuai"
+version = "1.0.0"
+description = "Autonomous AI Trading Agent — price prediction, sentiment signals, Solana DEX execution"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+keywords = ["ai", "trading", "solana", "crypto", "prediction", "sentiment", "defi"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "anthropic>=0.40.0",
+    "click>=8.1.7",
+    "python-dotenv>=1.0.0",
+    "httpx>=0.27.0",
+    "beautifulsoup4>=4.12.0",
+    "rich>=13.7.0",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "tweepy>=4.14.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/nujar00t/kairuai"
+Repository = "https://github.com/nujar00t/kairuai"
+Issues = "https://github.com/nujar00t/kairuai/issues"
+Changelog = "https://github.com/nujar00t/kairuai/blob/main/CHANGELOG.md"
+
+[project.scripts]
+kairu = "kairu:cli"
+
+[tool.setuptools.packages.find]
+include = ["agents*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
