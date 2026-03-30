@@ -6,13 +6,18 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   python-check:
     name: Python Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5.3.0
         with:
           python-version: "3.11"
       - name: Install dependencies
@@ -29,9 +34,11 @@ jobs:
   typescript-check:
     name: TypeScript Build Check
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
         with:
           node-version: "20"
           cache: "npm"
@@ -47,14 +54,17 @@ jobs:
   verify-files:
     name: Verify Required Files
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Check required files
         run: |
-          test -f README.md       && echo "README.md OK"
-          test -f LICENSE         && echo "LICENSE OK"
-          test -f CONTRIBUTING.md && echo "CONTRIBUTING.md OK"
-          test -f SECURITY.md     && echo "SECURITY.md OK"
-          test -f .env.example    && echo ".env.example OK"
-          test -f requirements.txt && echo "requirements.txt OK"
-          test -f package.json    && echo "package.json OK"
+          test -f README.md          && echo "README.md OK"
+          test -f LICENSE            && echo "LICENSE OK"
+          test -f CONTRIBUTING.md    && echo "CONTRIBUTING.md OK"
+          test -f SECURITY.md        && echo "SECURITY.md OK"
+          test -f CODE_OF_CONDUCT.md && echo "CODE_OF_CONDUCT.md OK"
+          test -f .env.example       && echo ".env.example OK"
+          test -f requirements.txt   && echo "requirements.txt OK"
+          test -f package.json       && echo "package.json OK"
