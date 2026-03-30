@@ -12,6 +12,12 @@
 
 ---
 
+
+
+https://github.com/user-attachments/assets/63eb7e12-416f-4222-84ca-3d6bf20fe0f3
+
+
+
 ## What is KairuAI?
 
 KairuAI is an open-source autonomous AI trading agent built on Solana. It combines LLM-powered price prediction, real-time sentiment analysis, on-chain trade execution, and prediction market intelligence — all under one unified system.
