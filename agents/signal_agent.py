@@ -35,6 +35,11 @@ def _twitter_client() -> tweepy.Client:
 
 
 def fetch_tweets(query: str, limit: int = 20) -> list[str]:
+    if not os.getenv("TWITTER_BEARER_TOKEN"):
+        console.print(
+            "[yellow]⚠ TWITTER_BEARER_TOKEN not set — skipping Twitter, using news only.[/yellow]"
+        )
+        return []
     try:
         client = _twitter_client()
         results = client.search_recent_tweets(
